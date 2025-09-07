@@ -6,8 +6,13 @@ public class BulletScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject); // remove enemy
-            Destroy(gameObject);       // remove bullet
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(); // reduce enemy health
+            }
+
+            Destroy(gameObject); 
         }
     }
 }
